@@ -93,7 +93,7 @@
                 <div class="challenge-card-content">
                     <h3>The "Campus Brain"</h3>
                     <div class="challenge-preview">
-                        <p><strong>Scenario:</strong>A centralized, AI-powered knowledge hub for college life. This platform solves the problem of scattered and hard-to-find information by ingesting data from various sources like official websites, student-uploaded notes (from Google Drive), and even informal chat groups. Students can ask questions in natural language (e.g., "When is the tech fest?") and get instant, accurate answers, complete with source links. It also provides a structured way to find peer-sourced advice on topics like professor reviews or project groups.</p>
+                        <p><strong>Scenario:</strong> A centralized, AI-powered knowledge hub for college life. This platform solves the problem of scattered and hard-to-find information by ingesting data from various sources like official websites, student-uploaded notes (from Google Drive), and even informal chat groups. Students can ask questions in natural language (e.g., "When is the tech fest?") and get instant, accurate answers, complete with source links. It also provides a structured way to find peer-sourced advice on topics like professor reviews or project groups.</p>
                     </div>
 
                     <div class="challenge-meta">
@@ -208,7 +208,7 @@
 
                 <div class="problem-content">
                     <h3>The "Campus Brain"</h3>
-                    <p><strong>Scenario:</strong>: A centralized, AI-powered knowledge hub for college life. This platform solves the problem of scattered and hard-to-find information by ingesting data from various sources like official websites, student-uploaded notes (from Google Drive), and even informal chat groups. Students can ask questions in natural language (e.g., "When is the tech fest?") and get instant, accurate answers, complete with source links. It also provides a structured way to find peer-sourced advice on topics like professor reviews or project groups.</p>
+                    <p><strong>Scenario:</strong> A centralized, AI-powered knowledge hub for college life. This platform solves the problem of scattered and hard-to-find information by ingesting data from various sources like official websites, student-uploaded notes (from Google Drive), and even informal chat groups. Students can ask questions in natural language (e.g., "When is the tech fest?") and get instant, accurate answers, complete with source links. It also provides a structured way to find peer-sourced advice on topics like professor reviews or project groups.</p>
 
                     <div class="requirements">
                         <h4>Key Requirements:</h4>
@@ -280,29 +280,37 @@
 <script src="../js/navbar.js"></script>
 
 <script>
-    function openPopup() {
-        const popup = document.getElementById('challengePopup');
-        popup.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    function openPopup(popupID) {
+        const popup = document.getElementById(popupId);
+        if (popup){
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
 
-    function closePopup() {
-        const popup = document.getElementById('challengePopup');
-        popup.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    function closePopup(popupId) {
+        const popup = document.getElementById('popupId');
+        if (popup){
+            popup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     }
 
     // Close popup when clicking outside
-    document.getElementById('challengePopup').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closePopup();
+    document.addEventListener('click', function(e) {
+        const activePopup = document.querySelector('.popup-overlay.active');
+        if (activePopup && e.target === activePopup) {
+            closePopup(activePopup.id);
         }
     });
 
     // Close popup with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            closePopup();
+            const activePopup = document.querySelector('.popup-overlay.active');
+            if (activePopup) {
+            closePopup(activePopup.id);
+          }
         }
     });
 
